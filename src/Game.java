@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.util.HashSet;
 import java.util.Scanner;
 
@@ -13,16 +14,16 @@ public class Game {
         do{res = (int) (Math.random() * 10);}while(res == 0);
     }
 
-    public boolean guess(int res, Scanner sc){
-        System.out.println("Guess number(1-10): ");
-        guess = sc.nextInt();
+    public void guess(Frame frame){
         guesses.add(guess);
         tries++;
         if (guess != res) {
-            System.out.println("You are wrong! You tried: " + guesses);
-            return false;
+            frame.guesseslabel.setText("Wrong! You tried: " + guesses);
         } else {
-            return true;
+            JOptionPane.showMessageDialog(JOptionPane.getRootFrame(), "You guessed! Starting new game");
+            this.init();
+            frame.guesseslabel.setText("You tried:");
         }
     }
 }
+
